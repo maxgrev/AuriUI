@@ -123,7 +123,7 @@ final class AuriUIDemoUITests: XCTestCase {
         assertLabel(app.staticTexts["demo.action"], contains: "Search for native charts, Any time.")
     }
 
-    func testEveryFormInputReachesHostWithEditedValues() {
+    func testEveryFormInputReachesHostWithEditedValues() throws {
         let app = launch()
         open("fields", tab: "Interactive", in: app)
         let activity = app.textFields["auriui.form.field.topic"]
@@ -158,8 +158,13 @@ final class AuriUIDemoUITests: XCTestCase {
 
         let duration = app.sliders.firstMatch
         scrollTo(duration, in: app)
+        XCTAssertEqual(duration.value as? String, "30 min")
         duration.adjust(toNormalizedSliderPosition: 1)
-        XCTAssertEqual(duration.value as? String, "120 min")
+        // XCTest's slider adjustment is approximate. Check that the value
+        // changed to a valid step, then verify that exact value reaches the host.
+        let selectedDuration = try XCTUnwrap(duration.value as? String)
+        let editedDurations = stride(from: 45, through: 120, by: 15).map { "\($0) min" }
+        XCTAssertTrue(editedDurations.contains(selectedDuration), "Unexpected duration: \(selectedDuration)")
 
         let review = app.buttons["auriui.form.all_fields.submit"]
         scrollTo(review, in: app)
@@ -169,7 +174,7 @@ final class AuriUIDemoUITests: XCTestCase {
         confirmation.buttons["Review plan"].tap()
         assertLabel(
             app.staticTexts["demo.action"],
-            contains: "Plan Reading on 2026-10-24 in the Evening, for 120 min. Notes: Bring a notebook"
+            contains: "Plan Reading on 2026-10-24 in the Evening, for \(selectedDuration). Notes: Bring a notebook"
         )
     }
 
