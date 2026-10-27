@@ -1,0 +1,9 @@
+aui 1
+screen fields "Every input type" "Non-sensitive sample inputs" tint:green
+form all_fields "Plan a day" cap:send confirm:"Use this sample plan?"
+field text topic "Activity" placeholder:"Reading, walking…" required min:2 max:80
+field textarea notes "Notes" placeholder:"Optional context" max:200
+field select time "Time of day" opt:"morning=Morning" opt:"afternoon=Afternoon" opt:"evening=Evening" val:morning
+field date day "Day" val:2026-10-22
+field slider duration "Duration" min:15 max:120 step:15 val:30 unit:"min"
+submit "Review plan" @send("Plan {topic} on {day} in the {time}, for {duration}. Notes: {notes}")

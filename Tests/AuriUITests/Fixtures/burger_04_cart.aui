@@ -1,0 +1,12 @@
+aui 1
+screen daily_grill_cart "Your order" "The Daily Grill" tint:amber
+state cur:USD
+receipt "Order summary"
+item "1× Classic Smash — Brioche, American, Applewood bacon" price:14.50
+item "Delivery fee" price:2.99
+stats
+item "25 min" "Arrival"
+item "4.9★" "Rating"
+button primary "Place order · {total}" @nav("Order tracking screen for The Daily Grill: estimated-arrival hero stat, courier card with a call action, map placeholder, and the order summary receipt totalling {total}")
+chips
+item "Add a shake" "Add a vanilla shake to my Daily Grill order"

@@ -1,0 +1,13 @@
+aui 1
+screen selection "Selection and totals" "A fictional lunch order" tint:orange
+state base:8.50 cur:USD
+list "Bread" pick:bread
+item 🍞 "Sourdough" val:sourdough price:0 sel
+item 🥯 "Bagel" val:bagel price:0.50
+list "Extras" multi
+item 🥑 "Avocado" val:avocado price:1.25
+item 🧀 "Cheese" val:cheese price:0.75
+receipt "Your order"
+item "Garden sandwich" price:8.50
+button primary "Review {total}" @send("Lunch: {selections}. Total {total}.")
+button "Next step" @nav("Lunch: {selections}. Total {total}.")

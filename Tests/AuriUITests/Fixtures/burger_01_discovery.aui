@@ -1,0 +1,11 @@
+aui 1
+screen food_nearby "Order food" "Top rated near you" tint:amber
+hero img:"gourmet burger and fries" "Recommended for you: The Daily Grill"
+row "Top rated nearby"
+item 🍔 "The Daily Grill" "4.9★ · 15 min · $$" img:"smash burger restaurant" @nav("Menu screen for The Daily Grill: hero image of a smash burger, rating and delivery stats, a Burgers row where Classic Smash ($12.50) and Double Bacon ($15.00) each open their customization screen, and a sides grid")
+item 🍣 "Sakura Zen" "4.7★ · 22 min · $$$" img:"omakase sushi platter" @nav("Menu screen for Sakura Zen: hero image of an omakase platter, rating and delivery stats, and a menu list of nigiri, sashimi, and specialty rolls with prices")
+item 🍜 "Tuk Tuk Thai" "4.6★ · 28 min · $$" img:"pad thai noodles wok" @nav("Menu screen for Tuk Tuk Thai: hero image of pad thai, delivery stats, and a menu list of curries, noodles, and appetizers with prices")
+chips
+item "Under 30 min" "Show only restaurants that deliver in under 30 minutes"
+item "Something new" "Recommend a cuisine I haven't ordered recently"
+button primary "Order the usual" @nav("Cart screen for The Daily Grill: receipt with 1× Double Bacon Burger $15.00 and Sweet potato fries $4.50, delivery fee $2.99, computed total row, and a place-order button")

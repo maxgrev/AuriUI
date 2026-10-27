@@ -1,0 +1,23 @@
+aui 1
+screen data "Charts and tables" "Fictional sample data" tint:blue
+chart line "Focus minutes" unit:"min"
+point "Mon" "Focus" v:20
+point "Tue" "Focus" v:35
+point "Wed" "Focus" v:30
+chart bar "Reading sessions" unit:"sessions"
+point "Morning" "Week one" v:3
+point "Evening" "Week one" v:5
+point "Morning" "Week two" v:4
+point "Evening" "Week two" v:2
+table "Sample schedule"
+tcol "Day"
+tcol "Activity"
+tcol "Minutes"
+trow "Monday" "Reading" "20" hi
+trow "Tuesday" "Walking" "35"
+compare ⚖️
+col "Small pack"
+col "Large pack"
+cgroup "Sample specifications"
+crow "Capacity" "12 L" "20 L" win:2 n1:"Less space" n2:"More space"
+crow "Weight" "300 g" "500 g" win:1 n1:"Lighter" n2:"Heavier"

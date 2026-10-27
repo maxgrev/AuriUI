@@ -1,0 +1,23 @@
+aui 1
+screen text "Text and structure" "Small native sections" tint:indigo
+intro "Render **structured content** with the same native components in any host app."
+header 🌿 "A quiet afternoon" "A fictional sample itinerary"
+steps "A simple plan"
+item 🚶 "Walk outside" "Take a short walk before you start."
+item 📖 "Read a chapter" "Choose something you enjoy."
+facts "Built for apps"
+item 📱 "Native views" "Text responds to the system type size."
+item 📴 "Works offline" "These documents come from the app bundle."
+bullets "Bring along" check
+item "A **book** and a notebook"
+item "A bottle of water"
+stats "Sample numbers"
+item "2" "Stops"
+item "45 min" "Duration"
+expand "More detail"
+item "Why use a document?" "The host supplies the data and handles actions. AuriUI renders the interface."
+button primary "Open next screen" @nav("Continue the quiet afternoon with a fictional reading plan.")
+chips
+item "Make it shorter" "Make the fictional afternoon plan shorter."
+sources
+item "Example link" url:"https://example.com"

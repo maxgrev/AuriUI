@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "auriui-backend",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-22",
+  "compatibility_flags": ["nodejs_compat", "enable_request_signal"],
+  "observability": { "enabled": true, "head_sampling_rate": 0.1 },
+  "vars": {
+    // Choose a model available to your Cerebras account. No model is assumed.
+    "CEREBRAS_MODEL": ""
+    // Optional: "CEREBRAS_REASONING_EFFORT": "none" for models supporting it.
+  }
+}

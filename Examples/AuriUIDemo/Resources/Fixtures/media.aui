@@ -1,0 +1,36 @@
+aui 1
+screen media "Media and detail pages" "Bundled sample illustrations" tint:teal
+row "Open a detail page"
+item 🏞 "Hill walk" "Tap for details" img:"hills" cap:"Fictional itinerary" badge:"Sample"
+hero img:"hills" "A small illustration bundled with this app"
+posters "Covers"
+item 📘 "Field notes" "Sample book" img:"cover"
+grid "Places"
+item ☕️ "Corner cafe" "A quiet table" img:"hills"
+item 🌳 "City garden" "A shady bench" img:"hills"
+menu "Sample menu"
+item 🥪 "Garden sandwich" "Roasted vegetables" price:8.50 img:"hills"
+cards
+item 🎒 "Day pack" "A fictional product" img:"cover" s:"Capacity=12 L" s:"Weight=300 g"
+state base:3 cur:USD
+list "Root order" multi
+item 🥖 "Croutons" val:croutons price:0 sel
+button "Root order {total}" @send("Root {total}: {selections}.")
+grid "Independent detail orders"
+item 🍲 "Soup" "A $6 order with its own toppings"
+item 🥗 "Salad" "An $8 order with its own toppings"
+page "Hill walk"
+header 🏞 "Hill walk details" "A bundled detail page"
+intro "This page belongs to the Hill walk tile. It opens without a host navigation request."
+button "Choose this walk" @send("Choose the fictional Hill walk.")
+page "Soup"
+state base:6 cur:USD
+list "Soup toppings" multi
+item 🥖 "Croutons" val:croutons price:0
+item 🌿 "Herbs" val:herbs price:1
+button "Soup total {total}" @send("Soup {total}: {selections}.")
+page "Salad"
+state base:8 cur:USD
+list "Salad toppings" multi
+item 🥖 "Croutons" val:croutons price:0
+button "Salad total {total}" @send("Salad {total}: {selections}.")

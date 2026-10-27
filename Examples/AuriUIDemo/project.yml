@@ -1,0 +1,91 @@
+name: AuriUIDemo
+options:
+  minimumXcodeGenVersion: 2.38.0
+  deploymentTarget:
+    iOS: "17.0"
+packages:
+  AuriUI:
+    path: ../..
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    GENERATE_INFOPLIST_FILE: YES
+targets:
+  AuriUIDemo:
+    type: application
+    platform: iOS
+    info:
+      path: Config/Info.plist
+      properties:
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+    sources:
+      - path: Sources
+      # A root Resources folder makes CFBundle interpret an iOS app as a
+      # different bundle layout and ignore its root Info.plist.
+      - path: Resources/Fixtures
+        buildPhase: resources
+        type: folder
+      - path: Resources/Images
+        buildPhase: resources
+        type: folder
+    dependencies:
+      - package: AuriUI
+        product: AuriUI
+      - package: AuriUI
+        product: AuriUIRenderer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.auriui.demo
+        INFOPLIST_KEY_CFBundleDisplayName: AuriUI Demo
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.developer-tools
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        TARGETED_DEVICE_FAMILY: "1,2"
+  AuriUIDemoTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+      - path: ../../Tests/AuriUITests
+        excludes:
+          - Fixtures
+      - path: ../../Tests/AuriUIRendererTests
+      - path: ../../Tests/AuriUITests/Fixtures
+        buildPhase: resources
+        type: folder
+    dependencies:
+      - target: AuriUIDemo
+      - package: AuriUI
+        product: AuriUI
+      - package: AuriUI
+        product: AuriUIRenderer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.auriui.demo.tests
+  AuriUIDemoUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies:
+      - target: AuriUIDemo
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.auriui.demo.uitests
+schemes:
+  AuriUIDemo:
+    build:
+      targets:
+        AuriUIDemo: all
+        AuriUIDemoTests: [test]
+        AuriUIDemoUITests: [test]
+    test:
+      gatherCoverageData: true
+      targets:
+        - name: AuriUIDemoTests
+        - name: AuriUIDemoUITests
+          parallelizable: false

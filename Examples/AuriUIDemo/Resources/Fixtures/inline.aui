@@ -1,0 +1,9 @@
+aui 1
+summary "A small document can live inside any host screen."
+header 🧩 "Embedded sections" "Part of your app"
+intro "The host controls the surrounding layout, navigation, and action handling."
+button primary "Use embedded action" @send("An action from the embedded document.")
+chips
+item "Try a follow-up" "An embedded follow-up."
+sources
+item "Example documentation" url:"https://example.com/docs"

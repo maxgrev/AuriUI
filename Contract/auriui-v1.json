@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "protocol": {
+    "name": "AuriUI",
+    "version": 1
+  },
+  "grammarRules": [
+    "One statement per line. Strings use double quotes and backslash escapes. Emoji are bare tokens.",
+    "A screen starts with aui 1, then screen <snake_id> \"Title\" \"Subtitle\"? tint:<name>, then state base:<n> cur:USD only when items carry prices.",
+    "An answer omits screen and starts with summary \"1–3 sentence answer\".",
+    "Containers collect the item, point, field, column, row, or submit lines that follow them.",
+    "Actions come last: @send(\"message\"), @nav(\"self-contained next-screen brief\"), or @url(resource).",
+    "Detail pages come last: page \"Exact tile title\", then that page's sections. A page title must match a tile or comparison column title."
+  ],
+  "keywords": {
+    "leaf": [
+      "intro",
+      "header",
+      "hero",
+      "button"
+    ],
+    "container": [
+      "row",
+      "posters",
+      "menu",
+      "grid",
+      "cards",
+      "steps",
+      "facts",
+      "bullets",
+      "stats",
+      "expand",
+      "chips",
+      "sources",
+      "list",
+      "receipt",
+      "compare",
+      "chart",
+      "table",
+      "form"
+    ],
+    "structural": [
+      "aui",
+      "screen",
+      "state",
+      "summary",
+      "tabs",
+      "tab",
+      "end",
+      "page"
+    ],
+    "item": [
+      "item",
+      "crow",
+      "cgroup",
+      "col",
+      "tcol",
+      "trow",
+      "point",
+      "field",
+      "submit"
+    ]
+  },
+  "components": [
+    {
+      "id": "intro",
+      "rootKeyword": "intro",
+      "keywords": ["intro"],
+      "prompt": "intro \"text\" — lede paragraph; markdown is allowed",
+      "sample": "intro \"A concise introduction.\""
+    },
+    {
+      "id": "header",
+      "rootKeyword": "header",
+      "keywords": ["header"],
+      "prompt": "header 🍪 \"Title\" \"Subtitle\"? — section heading with emoji art",
+      "sample": "header ✨ \"Example\" \"Useful detail\""
+    },
+    {
+      "id": "hero",
+      "rootKeyword": "hero",
+      "keywords": ["hero"],
+      "prompt": "hero img:\"image search query\" \"Caption\"? — full-bleed image header",
+      "sample": "hero img:\"example editorial photo\" \"Example\""
+    },
+    {
+      "id": "button",
+      "rootKeyword": "button",
+      "keywords": ["button"],
+      "prompt": "button primary? \"Label\" @action — standalone CTA",
+      "sample": "button primary \"Continue\" @send(\"Continue\")"
+    },
+    {
+      "id": "row",
+      "rootKeyword": "row",
+      "keywords": ["row", "item"],
+      "prompt": "row \"Title\"? → item 🍔 \"Title\" \"Subtitle\"? img:\"query\" cap:\"2024 · 8.5★\"? badge:\"New\"? @action?",
+      "sample": "row \"Examples\"\nitem ✨ \"Example\" \"Useful detail\""
+    },
+    {
+      "id": "posters",
+      "rootKeyword": "posters",
+      "keywords": ["posters", "item"],
+      "prompt": "posters \"Title\"? → item \"Dune: Part Two\" img:\"dune part two movie poster\" cap:\"2024 · 8.5★\"? badge:\"New\"? @action? — 2:3 cover carousel",
+      "sample": "posters \"Top picks\"\nitem 🎬 \"Example film\" img:\"example film poster\""
+    },
+    {
+      "id": "menu",
+      "rootKeyword": "menu",
+      "keywords": ["menu", "item"],
+      "prompt": "menu \"Title\"? → item 🍔 \"Classic Smash\" \"Double patty, secret sauce\" price:12.50 img:\"classic smash burger\" badge:\"Bestseller\"? @action? — commerce rows; price required",
+      "sample": "menu \"Menu\"\nitem 🍔 \"Classic\" \"House favorite\" price:12.50"
+    },
+    {
+      "id": "grid",
+      "rootKeyword": "grid",
+      "keywords": ["grid", "item"],
+      "prompt": "grid \"Title\"? → item 🍋 \"Title\" \"Subtitle\"? img:\"query\" badge:\"New\"? @action? — compact tiles",
+      "sample": "grid \"What you need\"\nitem 🍋 \"Lemon\" \"One, juiced\""
+    },
+    {
+      "id": "cards",
+      "rootKeyword": "cards",
+      "keywords": ["cards", "item"],
+      "prompt": "cards → item 🚗 \"Title\" \"Positioning\" img:\"query\" s:\"Label=Value\" s:\"Label=Value\" — 1–2 entity cards, at most 3 stats each",
+      "sample": "cards\nitem 🚗 \"Example car\" \"Daily all-rounder\" s:\"Range=300 mi\""
+    },
+    {
+      "id": "steps",
+      "rootKeyword": "steps",
+      "keywords": ["steps", "item"],
+      "prompt": "steps \"Title\"? → item 🔥 \"Short title\" \"One-sentence detail\"",
+      "sample": "steps \"Method\"\nitem 🔥 \"Heat the pan\" \"Use medium heat.\""
+    },
+    {
+      "id": "facts",
+      "rootKeyword": "facts",
+      "keywords": ["facts", "item"],
+      "prompt": "facts \"Title\"? → item 🔌 \"Road trip easy\" \"Supercharger access keeps charging simple.\" — icon-led product or place qualities",
+      "sample": "facts \"Why it works\"\nitem 🔌 \"Easy to use\" \"Clear controls reduce friction.\""
+    },
+    {
+      "id": "bullets",
+      "rootKeyword": "bullets",
+      "keywords": ["bullets", "item"],
+      "prompt": "bullets \"Title\"? check? → item \"text; markdown is allowed\"",
+      "sample": "bullets \"Remember\" check\nitem \"Bring a charger.\""
+    },
+    {
+      "id": "stats",
+      "rootKeyword": "stats",
+      "keywords": ["stats", "item"],
+      "prompt": "stats \"Title\"? → item \"8.5\" \"IMDb\" trend:up? — value at most 8 characters, at most 4 subject facts",
+      "sample": "stats \"At a glance\"\nitem \"8.5\" \"Rating\" trend:up"
+    },
+    {
+      "id": "expand",
+      "rootKeyword": "expand",
+      "keywords": ["expand", "item"],
+      "prompt": "expand \"Title\"? → item \"Question\" \"Body\"",
+      "sample": "expand \"Details\"\nitem \"What is included?\" \"Everything shown above.\""
+    },
+    {
+      "id": "chips",
+      "rootKeyword": "chips",
+      "keywords": ["chips", "item"],
+      "prompt": "chips → item \"Label ≤ 4 words\" \"Full prompt sent on tap\"",
+      "sample": "chips\nitem \"Show me more\" \"Show me more examples\""
+    },
+    {
+      "id": "sources",
+      "rootKeyword": "sources",
+      "keywords": ["sources", "item"],
+      "prompt": "sources → item \"Title\" url:r1 — cite only a DATA resource id used in the answer",
+      "sample": "sources\nitem \"Official source\" url:r1"
+    },
+    {
+      "id": "list",
+      "rootKeyword": "list",
+      "keywords": ["list", "item"],
+      "prompt": "list \"Title\"? pick:<group>|multi → item 🥐 \"Brioche\" \"Buttery\" val:brioche price:0 sel? — single-select or toggleable options",
+      "sample": "list \"Choose one\" pick:choice\nitem ✨ \"Example\" \"Included\" val:example price:0 sel"
+    },
+    {
+      "id": "receipt",
+      "rootKeyword": "receipt",
+      "keywords": ["receipt", "item"],
+      "prompt": "receipt \"Title\"? → item \"1× Classic Smash\" price:14.50 — client appends the computed Total row; omit state base",
+      "sample": "receipt \"Order\"\nitem \"1× Example\" price:14.50"
+    },
+    {
+      "id": "compare",
+      "rootKeyword": "compare",
+      "keywords": ["compare", "col", "cgroup", "crow"],
+      "prompt": "compare 🥊 → 2–3 col \"Contender\" img:\"exact contender photo\" lines, optional cgroup \"Group\", then crow \"Metric\" \"a\" \"b\" win:1|2? n1:\"Short edge\"? n2:\"Short edge\"?",
+      "sample": "compare 🥊\ncol \"A\"\ncol \"B\"\ncgroup \"Essentials\"\ncrow \"Range\" \"350 mi\" \"320 mi\" win:1"
+    },
+    {
+      "id": "chart",
+      "rootKeyword": "chart",
+      "keywords": ["chart", "point"],
+      "prompt": "chart line|bar \"Title\" unit:\"Grounded unit\" → 2–12 ordered X labels and 1–3 complete series using point \"X label\" \"Series\" v:<number>. Use line only for an ordered trend and grouped bars for category comparisons. Every value and the unit must appear in DATA or the user's message; never infer missing points, mix units, stack bars, or chart a single value.",
+      "sample": "chart line \"Weekly focus\" unit:\"min\"\npoint \"Mon\" \"Focus\" v:42\npoint \"Tue\" \"Focus\" v:55",
+      "requiresClientSupport": true,
+      "supportedPrompt": "use line or grouped-bar charts only when 2–12 grounded values make a trend or category comparison clearer; emit a complete value for every X label in every series and keep one unit across the chart.",
+      "unsupportedPrompt": "NEVER emit chart or point; use stats for headline values and table, row, facts, or bullets for the underlying data instead."
+    },
+    {
+      "id": "table",
+      "rootKeyword": "table",
+      "keywords": ["table", "tcol", "trow"],
+      "prompt": "table \"Title\"? → 2–4 tcol \"Header\" lines, then trow \"Cell\" \"Cell\" hi? — neutral standings, schedules, scoreboards, or compact matrices",
+      "sample": "table \"Standings\"\ntcol \"Team\"\ntcol \"Pts\"\ntrow \"Auri FC\" \"74\" hi",
+      "requiresClientSupport": true,
+      "supportedPrompt": "use it when neutral multi-column data is the clearest shape.",
+      "unsupportedPrompt": "NEVER emit table, tcol, or trow; use row, facts, stats, or bullets instead."
+    },
+    {
+      "id": "form",
+      "rootKeyword": "form",
+      "keywords": ["form", "field", "submit"],
+      "prompt": "form <snake_id> \"Title\" cap:nav|send confirm:\"Confirmation question\" → 1–6 field lines, then submit \"Label\" @matching_action. Fields: field text|textarea <snake_id> \"Label\" placeholder:\"…\"? val:\"…\"? required? min:<chars>? max:<chars>?; field select <snake_id> \"Label\" opt:\"value=Label\" opt:\"value=Label\" val:<value>? required?; field date <snake_id> \"Label\" val:YYYY-MM-DD required?; field slider <snake_id> \"Label\" min:<n> max:<n> step:<n> val:<n>? unit:\"…\"?. Use forms only to refine a search or collect details for a real listed capability; never request passwords, payment, booking, health, or other sensitive data.",
+      "sample": "form refine_search \"Refine search\" cap:nav confirm:\"Search with these details?\"\nfield text query \"Search terms\" placeholder:\"What are you looking for?\" required min:2 max:80\nfield select timeframe \"Time frame\" opt:\"any=Any time\" opt:\"week=Past week\" val:any\nsubmit \"Show results\" @nav(\"Results for {query} from {timeframe}\")",
+      "requiresClientSupport": true,
+      "supportedPrompt": "emit a form only when its cap names an available ability marked for form submissions; keep it to 1–6 non-sensitive fields and make the submit action match cap.",
+      "unsupportedPrompt": "NEVER emit form, field, or submit; use lists, chips, or a normal button instead."
+    },
+    {
+      "id": "tabs",
+      "rootKeyword": "tabs",
+      "keywords": ["tabs", "tab", "end"],
+      "prompt": "tabs → 2–4 tab \"Title\" blocks containing sections, then end — depth 1; never place tabs inside a page",
+      "sample": "tabs\ntab \"First\"\nintro \"First option.\"\ntab \"Second\"\nintro \"Second option.\"\nend"
+    }
+  ]
+}

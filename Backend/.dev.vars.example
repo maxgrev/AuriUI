@@ -1,0 +1,8 @@
+# Copy to .dev.vars for local development. Never put these values in Swift code.
+CEREBRAS_API_KEY=""
+# Generate with: openssl rand -hex 32
+BACKEND_TOKEN=""
+# Pick an ID available to your account using the Cerebras model list.
+CEREBRAS_MODEL=""
+# Enable only if your selected model supports this value:
+# CEREBRAS_REASONING_EFFORT="none"

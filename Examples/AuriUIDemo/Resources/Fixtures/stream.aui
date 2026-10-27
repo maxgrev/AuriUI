@@ -1,0 +1,9 @@
+aui 1
+screen stream "Offline stream" "An injected local provider" tint:mint
+header ✨ "Arriving in sections" "No backend required"
+intro "This text arrives as incremental deltas from an injected stream."
+steps "The data flow"
+item 📄 "Receive a delta" "The session parses complete lines as they arrive."
+item 🧩 "Render a section" "SwiftUI updates from the current document."
+item ✅ "Finish the document" "A final document event makes actions available."
+button primary "Use this result" @send("The offline stream completed successfully.")

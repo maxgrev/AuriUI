@@ -1,0 +1,16 @@
+aui 1
+screen customize_classic_smash "Customize burger" "Classic Smash" tint:amber
+state base:12.50 cur:USD
+hero img:"smash burger close-up melted cheese" "Double patty, American cheese, secret sauce"
+list "Choose your bun" pick:bun
+item 🥐 "Brioche" "Buttery and toasted" val:brioche price:0 sel
+item 🥔 "Potato roll" "Soft and fluffy" val:potato price:0
+item 🥬 "Lettuce wrap" "Fresh iceberg leaves" val:lettuce price:1.00
+list "Cheese" pick:cheese
+item 🧀 "American" "Classic melt" val:american price:0 sel
+item 🌶 "Pepper jack" "Spicy kick" val:pepperjack price:0.50
+list "Add-ons" multi
+item 🥓 "Applewood bacon" "Crispy and smoked" val:bacon price:2.00
+item 🥑 "Avocado" "Fresh sliced" val:avocado price:2.50
+item 🧅 "Caramelized onions" "Slow cooked" val:onions price:1.00
+button primary "Add to order · {total}" @nav("Cart screen for The Daily Grill: receipt with the line '1× Classic Smash — {selections}' priced {total}, a $2.99 delivery fee line, computed total row, arrival stats, and a place-order button")

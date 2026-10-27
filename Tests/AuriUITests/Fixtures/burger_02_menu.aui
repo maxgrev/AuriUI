@@ -1,0 +1,15 @@
+aui 1
+screen daily_grill_menu "The Daily Grill" "Smash burgers · 15 min" tint:amber
+hero img:"smash burger with fries" "Smash burgers, done right"
+stats
+item "4.9★" "Rating"
+item "15 min" "Delivery"
+item "$0" "Delivery fee"
+menu "Burgers"
+item 🍔 "Classic Smash" "Double patty, secret sauce" price:12.50 img:"classic smash burger" badge:"Bestseller" @nav("Customization screen for the Classic Smash burger, $12.50 base, tint:amber: single-select bun list (Brioche included, Potato roll included, Lettuce wrap +$1.00), single-select cheese list (American included, Pepper jack +$0.50), multi-select add-ons (Applewood bacon +$2.00, Avocado +$2.50, Caramelized onions +$1.00), running total on the add-to-order button")
+item 🥓 "Double Bacon" "Two patties, extra bacon" price:15.00 img:"double bacon cheeseburger" @nav("Customization screen for the Double Bacon burger, $15.00 base, tint:amber: single-select bun and cheese lists and multi-select add-ons with prices, running total on the add-to-order button")
+grid "Sides & shakes"
+item 🍟 "Sweet potato fries" "Crispy, sea salt" cap:"$4.50"
+item 🥤 "Vanilla shake" "Real ice cream" cap:"$5.00"
+chips
+item "Group order" "Start a group order from The Daily Grill"

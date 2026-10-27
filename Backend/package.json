@@ -1,0 +1,24 @@
+{
+  "name": "auriui-backend",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check:contract": "node ../Scripts/generate-contract.mjs --check",
+    "test": "npm run check:contract && node --test",
+    "check": "npm run check:contract && wrangler deploy --dry-run",
+    "dev": "npm run check:contract && wrangler dev",
+    "deploy": "npm run check:contract && wrangler deploy",
+    "types": "wrangler types",
+    "models": "node --env-file=.dev.vars scripts/models.mjs",
+    "secret:cerebras": "wrangler secret put CEREBRAS_API_KEY",
+    "secret:backend": "wrangler secret put BACKEND_TOKEN"
+  },
+  "devDependencies": {
+    "wrangler": "4.152.0"
+  }
+}

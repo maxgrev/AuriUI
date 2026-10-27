@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: Backend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+
+  package:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check generated contracts
+        run: node Scripts/generate-contract.mjs --check
+      - name: Test package
+        run: swift test --parallel
+
+  demo:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select an iPhone simulator
+        id: simulator
+        run: |
+          xcrun simctl list devices available --json > "$RUNNER_TEMP/devices.json"
+          python3 - "$RUNNER_TEMP/devices.json" "$GITHUB_OUTPUT" <<'PY'
+          import json
+          import sys
+
+          with open(sys.argv[1]) as source:
+              devices = json.load(source)["devices"]
+          iphones = [
+              device for runtime, entries in devices.items()
+              if ".iOS-" in runtime
+              for device in entries
+              if device["name"].startswith("iPhone")
+          ]
+          if not iphones:
+              raise SystemExit("No available iPhone simulator")
+          with open(sys.argv[2], "a") as output:
+              output.write(f"id={iphones[0]['udid']}\n")
+          PY
+      - name: Test standalone app and UI
+        run: >-
+          xcodebuild test
+          -project Examples/AuriUIDemo/AuriUIDemo.xcodeproj
+          -scheme AuriUIDemo
+          -destination 'platform=iOS Simulator,id=${{ steps.simulator.outputs.id }}'
+          -resultBundlePath "$RUNNER_TEMP/AuriUIDemo.xcresult"
+          CODE_SIGNING_ALLOWED=NO
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: demo-test-results
+          path: ${{ runner.temp }}/AuriUIDemo.xcresult

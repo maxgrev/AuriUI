@@ -1,0 +1,6 @@
+aui 1
+screen form "Validated form" "Search details stay in this app" tint:indigo
+form demo_search "Refine a search" cap:send confirm:"Send these search details?"
+field text query "Search terms" placeholder:"What would you like to find?" required min:2 max:80
+field select timeframe "Time frame" opt:"any=Any time" opt:"week=Past week" val:any
+submit "Review search" @send("Search for {query}, {timeframe}.")

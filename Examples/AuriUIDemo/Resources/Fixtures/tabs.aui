@@ -1,0 +1,11 @@
+aui 1
+screen tabs "Tabs and expansion" "Choose a plan" tint:violet
+tabs
+tab "Morning"
+intro "Morning plan: a short walk and a book."
+tab "Evening"
+intro "Evening plan: cook dinner and listen to music."
+end
+expand "Frequently asked"
+item "Does this need a server?" "No. This example reads a document bundled inside the demo app."
+item "Who handles actions?" "The host receives typed actions and chooses what to do next."
