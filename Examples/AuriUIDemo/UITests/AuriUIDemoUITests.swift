@@ -70,9 +70,9 @@ final class AuriUIDemoUITests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: timeout), .completed)
     }
 
-    private func dismissKeyboard(in app: XCUIApplication) {
+    private func dismissKeyboard(in app: XCUIApplication, scrollView: XCUIElement) {
         guard app.keyboards.firstMatch.exists else { return }
-        let scrollView = app.scrollViews.firstMatch
+        XCTAssertTrue(scrollView.exists, "The form's scroll view must exist")
         let frame = scrollView.frame
         let navigationBar = app.navigationBars.firstMatch
         let top = navigationBar.exists ? max(frame.minY, navigationBar.frame.maxY) : frame.minY
@@ -134,7 +134,11 @@ final class AuriUIDemoUITests: XCTestCase {
         let notes = app.textViews.firstMatch
         notes.tap()
         notes.typeText("Bring a notebook")
-        dismissKeyboard(in: app)
+        // The keyboard's suggestion strip can also be a ScrollView. Select
+        // the form's container by its field instead of accessibility order.
+        let formScrollView = app.scrollViews
+            .containing(.textField, identifier: "auriui.form.field.topic").firstMatch
+        dismissKeyboard(in: app, scrollView: formScrollView)
 
         let time = app.buttons["auriui.form.field.time"]
         scrollTo(time, in: app)
